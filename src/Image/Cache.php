@@ -130,6 +130,10 @@ class Cache
                 $resolved_url = Helpers::build_url($protocol, $host, $base_path, $url);
 
                 if ($protocol === "" || $protocol === "file://") {
+                    $resourceDir = $dompdf->getOptions()->getResourceDir();
+                    if (!empty($resourceDir))
+                        $resolved_url = $resourceDir . $resolved_url;
+
                     $realfile = realpath($resolved_url);
         
                     $rootDir = realpath($dompdf->getOptions()->getRootDir());

@@ -63,6 +63,15 @@ class Options
     private $chroot;
 
     /**
+     * Resource file directory.
+     *
+     * This directory contains all local files referenced in the HTML.
+     *
+     * @var string
+     */
+    private $resourceDir;
+
+    /**
      * @var string
      */
     private $logOutputFile;
@@ -322,6 +331,8 @@ class Options
                 $this->setFontCache($value);
             } elseif ($key === 'chroot') {
                 $this->setChroot($value);
+            } elseif ($key === 'resourceDir') {
+                $this->setResourceDir($value);
             } elseif ($key === 'logOutputFile' || $key === 'log_output_file') {
                 $this->setLogOutputFile($value);
             } elseif ($key === 'defaultMediaType' || $key === 'default_media_type') {
@@ -387,6 +398,8 @@ class Options
             return $this->getFontCache();
         } elseif ($key === 'chroot') {
             return $this->getChroot();
+        } elseif ($key === 'resourceDir') {
+            return $this->getResourceDir();
         } elseif ($key === 'logOutputFile' || $key === 'log_output_file') {
             return $this->getLogOutputFile();
         } elseif ($key === 'defaultMediaType' || $key === 'default_media_type') {
@@ -497,6 +510,24 @@ class Options
             $chroot = $this->chroot;
         }
         return $chroot;
+    }
+
+    /**
+     * @param string $resourceDir
+     * @return $this
+     */
+    public function setResourceDir($resourceDir, $delimiter = ',')
+    {
+        $this->resourceDir = $resourceDir;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getResourceDir()
+    {
+        return $this->resourceDir;
     }
 
     /**
